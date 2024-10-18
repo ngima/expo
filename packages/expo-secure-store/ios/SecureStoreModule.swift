@@ -104,7 +104,7 @@ public final class SecureStoreModule: Module {
       }
 
       var error: Unmanaged<CFError>? = nil
-      guard let accessOptions = SecAccessControlCreateWithFlags(kCFAllocatorDefault, accessibility, .biometryCurrentSet, &error) else {
+      guard let accessOptions = SecAccessControlCreateWithFlags(kCFAllocatorDefault, accessibility, .userPresence, &error) else {
         let errorCode = error.map { CFErrorGetCode($0.takeRetainedValue()) }
         throw SecAccessControlError(errorCode)
       }
